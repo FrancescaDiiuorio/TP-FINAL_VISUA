@@ -1,4 +1,5 @@
- :root {
+/* Variables globales de color, tamaño y espaciado reutilizables en toda la página. */
+:root {
 	--bg: #0d0f12;
 	--surface: rgba(15, 17, 20, 0.72);
 	--surface-strong: rgba(10, 12, 14, 0.88);
@@ -10,40 +11,47 @@
 	--max-width: 1180px;
 }
 
+/* Normaliza el cálculo de tamaños para que padding y borders no rompan el layout. */
 * {
 	box-sizing: border-box;
 }
 
+/* Habilita un scroll suave cuando se navega por anclas o cambios de sección. */
 html {
 	scroll-behavior: smooth;
 }
 
+/* Estilos base del documento: fondo, tipografía y color general del texto. */
 body {
 	margin: 0;
 	background:
-		radial-gradient(circle at top, rgba(255, 214, 154, 0.18), transparent 30%),
+		radial-gradient(circle at top, rgba(255, 241, 221, 0.18), transparent 30%),
 		linear-gradient(180deg, #ffffff 0%, #ffffff 58%, #f1ece3 100%);
-	color: #1f1f1f;
-	font-family: "Inter", Arial, sans-serif;
+	color: #000000;
+	font-family: "Georgia", Arial, sans-serif;
 	line-height: 1.5;
 	text-rendering: optimizeLegibility;
 }
 
+/* Evita que imágenes y video se desborden y los muestra como bloques. */
 img,
 video {
 	max-width: 100%;
 	display: block;
 }
 
+/* Hereda color y quita el subrayado por defecto de los enlaces. */
 a {
 	color: inherit;
 	text-decoration: none;
 }
 
+/* Contenedor principal de toda la página. */
 .page-shell {
 	min-height: 100vh;
 }
 
+/* Sección hero: centra el contenido en pantalla y prepara el área visual principal. */
 .hero {
 	position: relative;
 	min-height: 100vh;
@@ -55,6 +63,7 @@ a {
 	border-bottom: 1px solid var(--line);
 }
 
+/* Capa de fondo que contiene la imagen principal y su tratamiento visual. */
 .hero__media {
 	position: absolute;
 	inset: 0;
@@ -65,6 +74,7 @@ a {
 	pointer-events: none;
 }
 
+/* Overlay oscuro para mejorar el contraste del texto sobre la imagen. */
 .hero__media::after {
 	content: "";
 	position: absolute;
@@ -75,15 +85,17 @@ a {
 	z-index: 1;
 }
 
+/* Tintado suave adicional para darle atmósfera al hero. */
 .hero__media-tint {
 	position: absolute;
 	inset: 0;
 	background:
-		radial-gradient(circle at 50% 42%, rgba(241, 193, 75, 0.1), transparent 22%),
+		radial-gradient(circle at 50% 42%, rgba(245, 227, 181, 0.1), transparent 22%),
 		linear-gradient(90deg, rgba(10, 12, 14, 0.3), transparent 18%, transparent 82%, rgba(10, 12, 14, 0.3));
 	z-index: 2;
 }
 
+/* Imagen de fondo que cubre todo el hero sin deformarse. */
 .hero__image {
 	position: absolute;
 	inset: 0;
@@ -96,6 +108,7 @@ a {
 	z-index: 0;
 }
 
+/* Contenedor del contenido textual del hero: aquí se centra el texto. */
 .hero__content {
 	position: relative;
 	z-index: 2;
@@ -109,15 +122,17 @@ a {
 	box-shadow: none;
 }
 
+/* Etiqueta pequeña superior del hero. */
 .hero__eyebrow {
 	margin: 0 0 0.9rem;
 	font-size: 0.82rem;
 	font-weight: 700;
 	letter-spacing: 0.28em;
 	text-transform: uppercase;
-	color: rgba(255, 236, 198, 0.8);
+	color: rgba(245, 239, 227, 0.8);
 }
 
+/* Título principal: centrado visualmente y con una tipografía más expresiva. */
 .hero h1 {
 	margin: 0;
 	font-family: "Cormorant Garamond", Georgia, serif;
@@ -125,11 +140,12 @@ a {
 	line-height: 0.94;
 	letter-spacing: -0.04em;
 	font-weight: 600;
-	color: #fff2d2;
+	color: #fefefe;
 	text-wrap: balance;
 	text-shadow: 0 2px 18px rgba(0, 0, 0, 0.34);
 }
 
+/* Texto descriptivo bajo el título; se centra con márgenes automáticos. */
 .hero__dek {
 	max-width: 44rem;
 	margin: 1.2rem auto 0;
@@ -137,23 +153,7 @@ a {
 	color: var(--muted);
 }
 
-.hero__scroll-cue {
-	position: absolute;
-	left: 50%;
-	bottom: 1.75rem;
-	transform: translateX(-50%);
-	z-index: 2;
-	padding: 0.8rem 1rem;
-	font-size: 0.78rem;
-	letter-spacing: 0.2em;
-	text-transform: uppercase;
-	color: rgba(255, 241, 214, 0.8);
-	border: 1px solid rgba(255, 255, 255, 0.12);
-	border-radius: 999px;
-	background: rgba(11, 12, 14, 0.34);
-	backdrop-filter: blur(4px);
-}
-
+/* Bloque general de cada capítulo o sección narrativa. */
 .chapter {
 	width: min(calc(100% - 2rem), var(--max-width));
 	margin: 0 auto;
@@ -162,6 +162,7 @@ a {
 	background: transparent;
 }
 
+/* Capítulo de introducción: centra su contenido en una sola columna. */
 .chapter--intro {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -171,19 +172,26 @@ a {
 	text-align: center;
 }
 
+/* Contenedor interno de la introducción con ancho limitado. */
 .chapter__intro {
+	width: min(100%, 56rem);
+	margin: 0 auto;
 	max-width: 56rem;
+	text-align: center;
 }
 
-.chapter__eyebrow {
-	margin: 0 0 1.25rem;
+/* Subtítulo o etiqueta del capítulo. */
+.chapter .chapter__eyebrow {
+	margin: 0 auto 1.25rem;
 	font-size: 0.95rem;
 	font-weight: 700;
 	letter-spacing: 0.22em;
 	text-transform: uppercase;
 	color: #f03d1d;
+	max-width: fit-content;
 }
 
+/* Título del capítulo introductorio. */
 .chapter__intro h2 {
 	margin: 0 0 1.6rem;
 	font-family: "Cormorant Garamond", Georgia, serif;
@@ -195,26 +203,27 @@ a {
 	text-wrap: balance;
 }
 
-.chapter__lead {
+/* Párrafo destacado de apertura; se centra con auto en los laterales. */
+.chapter .chapter__lead {
 	max-width: 46rem;
-	margin: 0;
+	margin: 0 auto;
 	font-size: clamp(1.15rem, 2.2vw, 1.45rem);
 	line-height: 1.7;
 	color: rgba(31, 31, 31, 0.84);
-	margin-left: auto;
-	margin-right: auto;
+	text-align: center;
 }
 
-.chapter__body {
+/* Texto de desarrollo del capítulo; mantiene una medida cómoda de lectura. */
+.chapter .chapter__body {
 	max-width: 44rem;
-	margin-top: 1.4rem;
+	margin: 1.4rem auto 0;
 	font-size: clamp(1.05rem, 1.8vw, 1.2rem);
 	line-height: 1.9;
 	color: rgba(31, 31, 31, 0.8);
-	margin-left: auto;
-	margin-right: auto;
+	text-align: center;
 }
 
+/* Etiqueta auxiliar usada dentro de otras secciones o tarjetas. */
 .chapter__label {
 	font-size: 0.8rem;
 	font-weight: 700;
@@ -223,6 +232,7 @@ a {
 	color: #f03d1d;
 }
 
+/* Títulos generales dentro de secciones chapter. */
 .chapter h2 {
 	margin: 0;
 	font-family: "Cormorant Garamond", Georgia, serif;
@@ -233,6 +243,7 @@ a {
 	color: #222;
 }
 
+/* Párrafos genéricos dentro de chapter. */
 .chapter p {
 	margin: 0.9rem 0 0;
 	max-width: 36rem;
@@ -240,17 +251,20 @@ a {
 	font-size: 1.05rem;
 }
 
+/* Variante de chapter sin espacio superior ni borde inferior. */
 .chapter--stub {
 	padding-top: 0;
 	border-bottom: 0;
 }
 
+/* Grilla de tarjetas para la parte final o de apoyo. */
 .chapter__grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 1rem;
 }
 
+/* Tarjeta individual dentro de la grilla. */
 .chapter__grid article {
 	padding: 1.4rem;
 	min-height: 12rem;
@@ -260,6 +274,7 @@ a {
 	box-shadow: 0 10px 30px rgba(31, 31, 31, 0.04);
 }
 
+/* Título de cada tarjeta. */
 .chapter__grid h3 {
 	margin: 0 0 0.8rem;
 	font-size: 1rem;
@@ -268,11 +283,13 @@ a {
 	color: #202020;
 }
 
+/* Texto dentro de cada tarjeta. */
 .chapter__grid p {
 	margin: 0;
 	font-size: 0.98rem;
 }
 
+/* Ajustes de layout para pantallas medianas. */
 @media (max-width: 900px) {
 	.hero {
 		padding: 1.5rem;
@@ -289,6 +306,7 @@ a {
 	}
 }
 
+/* Ajustes de tipografía y ancho para pantallas chicas. */
 @media (max-width: 640px) {
 	.hero h1 {
 		font-size: clamp(2.5rem, 15vw, 4.4rem);
