@@ -21,7 +21,7 @@ if (heroImage && heroSection) {
 
 // ─── Flourish scroll-driven story ────────────────────────────────────────
 // Ajustar TOTAL_SLIDES al número real de slides en story/3707371
-const TOTAL_SLIDES = 11;
+const TOTAL_SLIDES = 13;
 
 const flourishSection = document.querySelector('.flourish-scroll');
 
@@ -83,3 +83,44 @@ if (flourishSection) {
 
 	window.addEventListener('scroll', onFlourishScroll, { passive: true });
 }
+
+// ─── Capítulo de la cifra: conteo 0 → 70.000.000 con el scroll ──────────
+(function () {
+	const TARGET = 70000000;
+	const section = document.getElementById('figure');
+	if (!section) return;
+
+	const countEl = document.getElementById('count');
+	const barEl = document.getElementById('bar');
+	const figureEl = countEl.closest('.figure');
+	const hintEl = document.getElementById('hint');
+	const nf = new Intl.NumberFormat('es-AR'); // 70.000.000
+
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if (reduceMotion) {
+		countEl.textContent = nf.format(TARGET);
+		figureEl.classList.add('is-complete');
+		return;
+	}
+
+	const ease = (t) => 1 - Math.pow(1 - t, 3); // easeOutCubic
+
+	function update() {
+		const rect = section.getBoundingClientRect();
+		const scrollable = section.offsetHeight - window.innerHeight;
+		const raw = Math.min(1, Math.max(0, -rect.top / scrollable));
+
+		// el número cuenta en la franja central del scroll (con "aire" antes/después)
+		const counting = Math.min(1, Math.max(0, (raw - 0.12) / 0.70));
+		const value = Math.round(ease(counting) * TARGET);
+
+		countEl.textContent = nf.format(value);
+		barEl.style.setProperty('--progress', counting);
+		figureEl.classList.toggle('is-complete', counting >= 0.999);
+		hintEl.style.opacity = raw > 0.05 ? '0' : '1';
+	}
+
+	update();
+	window.addEventListener('scroll', update, { passive: true });
+	window.addEventListener('resize', update);
+})();
