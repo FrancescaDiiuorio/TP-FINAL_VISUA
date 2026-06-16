@@ -292,8 +292,6 @@ a {
 /* Sección de Flourish con scroll-driven storytelling */
 .flourish-scroll {
 	position: relative;
-	/* TOTAL_SLIDES × 100vh — ajustar si cambia el número de slides en story/3707371 */
-	height: 1100vh;
 }
 
 /* Ajusta el contenedor sticky para centrar el embed */
@@ -311,6 +309,64 @@ a {
 	width: 100%;
 	height: 100%;
 	margin: 0;
+}
+
+.textos-flotantes {
+    position: relative;
+    z-index: 10;
+    pointer-events: none; /* Deja hacer clic en el mapa a través de las cajas vacías */
+}
+
+.step {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 5%; /* Esto deja un pequeño margen para que la tarjeta no toque los bordes de la pantalla */
+}
+
+/* Clases mágicas para ubicar la tarjeta */
+.pos-izq {
+  justify-content: flex-start;
+}
+
+.pos-centro {
+  justify-content: center;
+}
+
+.pos-der {
+  justify-content: flex-end;
+}
+
+/* El diseño de la caja de texto */
+.tarjeta-scroll {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  padding: 2rem;
+  max-width: 450px;
+  pointer-events: auto; 
+  /* Asegurate de NO tener margin-left ni margin auto acá */
+}
+
+/* Estilo para la imagen dentro de la tarjeta */
+.imagen-tarjeta {
+  width: 100%; /* Ocupa todo el ancho de la tarjeta */
+  height: auto;
+  border-radius: 4px;
+  margin: 1rem 0; /* Espacio arriba y abajo de la foto */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.video-tarjeta {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+  display: block; /* Esto evita espacios raros debajo del video */
+  border-radius: 6px; 
+  margin: 0 0 1.5rem 0; /* Espacio solo por debajo del video */
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Una sombrita sutil para que despegue */
 }
 
 /* Ajustes de layout para pantallas medianas. */

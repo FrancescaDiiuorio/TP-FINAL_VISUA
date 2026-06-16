@@ -19,15 +19,13 @@ if (heroImage && heroSection) {
 	window.addEventListener('resize', updateHeroParallax);
 }
 
-// ─── Flourish scroll-driven story ────────────────────────────────────────
-// Ajustar TOTAL_SLIDES al número real de slides en story/3707371
-const TOTAL_SLIDES = 13;
+// ─── Flourish scroll-driven story con HTML (Intersection Observer) ────────
 
 const flourishSection = document.querySelector('.flourish-scroll');
 
 if (flourishSection) {
-	let lastSentSlide = -1;
 	let playerReady = false;
+	let slideActual = 0; // Memoria para saber qué slide debería estar viéndose
 
 	function getFlourishIframe() {
 		return flourishSection.querySelector('iframe');
@@ -35,42 +33,21 @@ if (flourishSection) {
 
 	function sendSlide(index) {
 		const iframe = getFlourishIframe();
-		if (!iframe) return;
+		// Si no hay iframe o no está listo, no hacemos nada todavía
+		if (!iframe || !playerReady) return;
 		
-		// Utilizar el hash de la URL para cambiar de slide internamente sin recargar el iframe
 		const baseSrc = iframe.src.split('#')[0];
 		iframe.src = `${baseSrc}#slide-${index}`;
-	}
-
-	function getTargetSlide() {
-		const rect = flourishSection.getBoundingClientRect();
-		const scrolled = -rect.top;
-		const scrollable = flourishSection.offsetHeight - window.innerHeight;
-		if (scrollable <= 0) return 0;
-		const progress = Math.max(0, Math.min(1, scrolled / scrollable));
-		return Math.min(TOTAL_SLIDES - 1, Math.floor(progress * TOTAL_SLIDES));
-	}
-
-	function onFlourishScroll() {
-		if (!playerReady) return;
-		const slide = getTargetSlide();
-		if (slide !== lastSentSlide) {
-			lastSentSlide = slide;
-			sendSlide(slide);
-		}
 	}
 
 	function markPlayerReady() {
 		if (playerReady) return;
 		playerReady = true;
-		// Sincroniza inmediatamente con la posición de scroll actual
-		const slide = getTargetSlide();
-		lastSentSlide = slide;
-		sendSlide(slide);
+		// Apenas Flourish esté listo, le mandamos la slide en la que estamos parados
+		sendSlide(slideActual);
 	}
 
-	// Flourish manda postMessages al parent al inicializarse (resize, etc.)
-	// Cuando recibimos cualquier mensaje del iframe, sabemos que el player está listo
+	// Intenta detectar cuándo Flourish cargó por completo
 	window.addEventListener('message', (event) => {
 		const iframe = getFlourishIframe();
 		if (iframe && event.source === iframe.contentWindow) {
@@ -78,10 +55,24 @@ if (flourishSection) {
 		}
 	});
 
-	// Fallback por si no llega ningún mensaje del iframe
-	setTimeout(markPlayerReady, 4000);
+	// EL SALVAVIDAS: Si Flourish tarda o el navegador bloquea el mensaje, lo forzamos a los 3 segundos
+	setTimeout(markPlayerReady, 3000);
 
-	window.addEventListener('scroll', onFlourishScroll, { passive: true });
+	// ─── Lógica del scroll (Intersection Observer) ───
+	const steps = document.querySelectorAll('.step');
+	const observer = new IntersectionObserver((entradas) => {
+		entradas.forEach(entrada => {
+			// Cuando el centro de la caja cruzó la mitad de tu pantalla
+			if (entrada.isIntersecting) {
+				// Guardamos el número en la memoria y lo enviamos
+				slideActual = entrada.target.getAttribute('data-slide');
+				sendSlide(slideActual);
+			}
+		});
+	}, { rootMargin: '-50% 0px -50% 0px' });
+
+	// Le decimos al observador que mire todas las cajas invisibles y visibles
+	steps.forEach(step => observer.observe(step));
 }
 
 // ─── Capítulo de la cifra: conteo 0 → 70.000.000 con el scroll ──────────
