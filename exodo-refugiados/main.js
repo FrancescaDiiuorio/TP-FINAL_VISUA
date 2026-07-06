@@ -48,7 +48,7 @@ Suecia,SWE,3000
 `;
 
 const NOTAS = {
-  USA: "El principal destino soñado. El sistema de cuotas —vigente desde 1924— nunca se adaptó a la crisis: exigía trámites consulares estrictos y no se pensó para resolver una emergencia humanitaria. En junio de 1941 EE.UU. cerró sus representaciones diplomáticas en Alemania y la Europa ocupada, y el ataque a Pearl Harbor paralizó la navegación transatlántica.",
+  USA: "El destino más buscado, pero también uno de los más difíciles de alcanzar. Las estrictas políticas migratorias y los requisitos consulares limitaron el ingreso de miles de refugiados.",
   ISR: "Bajo el Mandato británico de Palestina, fue uno de los principales destinos entre 1933 y 1937, en gran parte a través del Acuerdo de Haavara y la Aliá, hasta que las autoridades británicas limitaron la admisión.",
   GBR: "El Reino Unido admitió solo a un puñado de refugiados adultos, pero sí permitió el rescate infantil del Kindertransport: casi 10.000 niños llegaron tras la Noche de los Cristales Rotos (1938).",
   FRA: "Francia fue refugio temprano y punto de tránsito hacia otros continentes, aunque muchos quedaron atrapados tras 1940.",
@@ -79,6 +79,7 @@ function iso3De(feature) {
 
 /* ---------- Estado del mapa ---------- */
 const svgEl = document.getElementById("map");
+const chartOverlayEl = document.getElementById("exodo-chart-overlay"); // tapa el mapa en el último paso
 let svg, g, path, projection;
 let rutas = [];          // { iso3, feature, pathEl, labelEl, dotEl, largo }
 let dibujadas = new Set();
@@ -374,18 +375,28 @@ function construirNarrativa(datos) {
       idx: i,
       titulo: d.destino,
       conteo: d.refugiados,
-      texto: NOTAS[d.iso3] || "Uno de los destinos del éxodo judío desde Alemania.",
+      texto: NOTAS[d.iso3] || "Uno de los destinos de la migración judía desde Alemania.",
     }));
   });
 
-  // Paso final
+  // Paso final: el mapa completo, con todas las rutas y países iluminados
+  // pero sin los nombres (con 15 etiquetas juntas quedaba ilegible).
   cont.appendChild(crearPaso({
     clase: "exodo-step--final",
     idx: datos.length,
     titulo: "El mapa completo",
     subtitulo: "Un éxodo global",
-    texto: "Todas las rutas juntas revelan la dimensión del éxodo: cientos de miles de personas dispersas por cuatro continentes en apenas seis años.",
+    texto: "El mapa completo muestra la dimensión del desplazamiento: cientos de miles de personas distribuidas por cuatro continentes en apenas seis años.",
     total,
+  }));
+
+  // Último paso: acá el gráfico de barras reemplaza al mapa (a la izquierda)
+  cont.appendChild(crearPaso({
+    clase: "exodo-step--final",
+    idx: datos.length + 2,
+    titulo: "Todos los números juntos",
+    subtitulo: "Refugiados por destino",
+    texto: "Ordenados de mayor a menor, los quince destinos muestran la misma historia: casi un tercio de quienes emigraron se concentró en un solo país: EE. UU.",
   }));
 }
 
@@ -436,6 +447,9 @@ function activarPaso(idx) {
   // recorre destino por destino, cede el lugar al nombre de cada país.
   totalLabelEl.classList.toggle("is-visible", idx < 0 || idx >= rutas.length);
 
+  // Último paso: el gráfico de barras tapa el mapa (a la izquierda)
+  if (chartOverlayEl) chartOverlayEl.classList.toggle("is-active", idx === rutas.length + 2);
+
   if (idx < 0) {
     // Introducción: sólo Alemania → ocultar todas las rutas
     rutas.forEach((_, i) => ocultarRuta(i));
@@ -443,10 +457,12 @@ function activarPaso(idx) {
     return;
   }
   if (idx >= rutas.length) {
-    // Paso final: mostrar TODAS las rutas y sus nombres simultáneamente, sin atenuar ninguna
+    // Pasos finales (mapa completo y gráfico): todas las rutas y países
+    // iluminados, sin atenuar ninguna, pero sin acumular los nombres
+    // (15 etiquetas juntas quedaban ilegibles).
     rutas.forEach((_, i) => dibujarRuta(i));
     rutas.forEach(r => {
-      r.labelEl.classList.add("is-visible");
+      r.labelEl.classList.remove("is-visible");
       r.pathEl.classList.remove("is-dimmed");
       r.dotEl.classList.remove("is-dimmed");
     });

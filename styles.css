@@ -707,6 +707,32 @@ footer p {
 	display: block;
 }
 
+/* Gráfico de barras (Flourish): tapa el mapa en el último paso del scroll. */
+.exodo-mapa__chart {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	background: #ffffff;
+	padding: 1.5rem;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.5s ease;
+}
+.exodo-mapa__chart.is-active {
+	opacity: 1;
+	pointer-events: auto;
+}
+.exodo-mapa__chart .flourish-embed {
+	width: 90%;
+	height: 80%;
+}
+.exodo-mapa__chart .flourish-embed iframe {
+	height: 100% !important;
+}
+
 .scrolly__narrative {
 	width: 40%;
 	padding: 0 3vw;
@@ -714,7 +740,7 @@ footer p {
 
 /* Tarjetas de la narrativa: mismo tratamiento que .tarjeta-scroll del resto del sitio. */
 .exodo-step {
-	min-height: 90vh;
+	min-height: 150vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -761,6 +787,12 @@ footer p {
 .exodo-step--intro .exodo-step__country,
 .exodo-step--final .exodo-step__country {
 	color: #f03d1d;
+}
+
+/* Más alto que el resto: da más distancia de scroll para que una tarjeta
+   final termine de entrar/salir antes de que aparezca la siguiente. */
+.exodo-step--final {
+	min-height: 150vh;
 }
 
 /* Elementos del SVG del mapa. */
@@ -861,6 +893,20 @@ footer p {
 	width: 100%;
 	color: rgba(31, 31, 31, 0.45);
 	font-size: 0.72rem;
+}
+
+/* Cita de la fuente, al pie del mapa del éxodo. */
+.exodo-mapa__fuente {
+	width: min(100%, var(--max-width));
+	margin: 1.4rem auto 0;
+	font-size: 0.78rem;
+	color: rgba(31, 31, 31, 0.55);
+	text-align: center;
+}
+.exodo-mapa__fuente a {
+	color: rgba(31, 31, 31, 0.75);
+	text-decoration: underline;
+	text-underline-offset: 2px;
 }
 
 /* En pantallas medianas, el mapa pasa arriba de la narrativa. */
