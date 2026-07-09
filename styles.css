@@ -311,7 +311,7 @@ a {
 /* Ajuste del embed dentro de la mitad izquierda */
 .flourish-scroll__sticky .flourish-embed {
     width: 100%;
-    height: 100vh;
+    height: 75vh;
     margin: 0;
 }
 
