@@ -108,6 +108,202 @@ document.querySelectorAll('.flourish-scroll').forEach(flourishSection => {
 	window.addEventListener('resize', update);
 })();
 
+// Capítulo 3: Línea de tiempo
+
+const enemyTimelineData = [
+	{
+		year: "1933",
+		date: "30-01-1933",
+		title: "Hitler es nombrado canciller",
+		description: "Comienza el régimen Nazi.",
+		image: "img/hitler_canciller.jpg"
+	},
+	{
+		year: "1933",
+		date: "01-04-1933",
+		title: "Boicot nacional a negocios judíos",
+		description: "Primer ataque coordinado del Estado contra los judíos. Ese día, los alemanes no comprarían nada en tiendas y negocios identificados por los nazis como judíos. Tampoco debían acudir a consultorios de médicos o despachos de abogados judíos.\n\nLos nazis culpaban falsamente a los judíos de los problemas económicos de Alemania y buscaban eliminar su influencia en la economía. El boicot fue presentado como el primer paso para lograrlo.",
+		image: "img/boicot_negocios_judios.jpeg"
+	},
+	{
+		year: "1933",
+		date: "07-04-1933",
+		title: "Ley para la Restauración del Servicio Civil Profesional",
+		description: "Expulsaron a los judíos del servicio civil, lo que afectó masivamente a jueces, profesores universitarios y funcionarios del gobierno. Ese mismo mes se aprobaron restricciones drásticas contra médicos y abogados judíos.",
+		image: "img/ley-servicio-civil.jpg"
+	},
+	{
+		year: "1933",
+		date: "25-04-1933",
+		title: "Ley contra la Sobrecarga de las Escuelas y Universidades Alemanas",
+		description: "Esta norma impuso un límite estricto que redujo drásticamente el número de estudiantes judíos admitidos en instituciones educativas de Alemania.",
+		image: "img/expulsion_judios_escuelas.jpeg"
+	},
+	{
+		year: "1935",
+		date: "15-09-1935",
+		title: "Leyes de Núremberg",
+		description: "Los judíos dejan de ser ciudadanos alemanes. Los privaron de sus derechos políticos, prohibieron los matrimonios mixtos entre alemanes y judíos, y los definieron legalmente según la ascendencia de sus abuelos.",
+		image: "img/leyes_nuremberg.jpg"
+	},
+	{
+		year: "1938",
+		date: "12-03-1938",
+		title: "Anexión de Austria",
+		description: "Tras la anexión de Austria en 1938, más de 180.000 judíos austríacos quedaron bajo control nazi y fueron sometidos a las mismas políticas de discriminación, despojo y exclusión que en Alemania.",
+		image: "img/anexion_austria.jpg"
+	},
+	{
+		year: "1938",
+		date: "17-09-1938",
+		title: "Ley de nombres y apellidos",
+		description: "La normativa exigía que las personas sin nombres de pila explícitamente judíos adoptaran el segundo nombre obligatorio de “Israel” para los hombres y “Sara” para las mujeres para facilitar su identificación y segregación.",
+		image: "img/ley-nombres-nazis.png"
+	},
+	{
+		year: "1938",
+		date: "05-10-1938",
+		title: "Decreto sobre pasaportes judíos",
+		description: "En 1938, el régimen nazi invalidó los pasaportes de los judíos. Solo podían volver a utilizarse si eran marcados con una letra “J”, facilitando su identificación y control.",
+		image: "img/ley-pasaportes-judios.jpg"
+	},
+	{
+		year: "1938",
+		date: "09-11-1938 → 10-11-1938",
+		title: "Kristallnacht: Noche de los Cristales Rotos",
+		description: "El régimen nazi coordinó ataques contra sinagogas, comercios y hogares judíos. El ataque recibió este nombre debido a los vidrios de los aparadores hechos añicos que cubrieron las calles después de la violencia.\n\n Las fuerzas de policía no protegieron a los judíos ni a sus propiedades. Cientos de judíos murieron durante la Kristallnacht, como resultado de esta. Más de 30.000 judíos fueron arrestados y enviados a campos de concentración.",
+		image: "img/noche-cristales-rotos.jpg"
+	},
+	{
+		year: "1938",
+		date: "12-11-1938",
+		title: "Las multas colectivas",
+		description: "Tras la Kristallnacht, el régimen nazi impuso una multa colectiva de 1.000 millones de marcos a la comunidad judía para la reparación de los daños, confiscó las indemnizaciones de seguros y prohibió a los judíos poseer negocios o trabajar de forma independiente.",
+		image: "img/daños-cristales-rotos.jpg"
+	},
+	{
+		year: "1938",
+		date: "15-11-1938",
+		title: "Expulsión de las escuelas públicas",
+		description: "En 1938, los niños judíos fueron expulsados de las escuelas públicas alemanas y austríacas, quedando confinados a instituciones segregadas sostenidas por la propia comunidad judía.",
+		image: "img/expulsion-niños-escuelas-publicas.jpg"
+	},
+	{
+		year: "1939",
+		date: "17-05-1939",
+		title: "Censo de población general para registro judío",
+		description: "En 1939, el régimen nazi incorporó criterios raciales al censo nacional y utilizó esa información para crear un registro detallado de la población judía bajo su control, facilitando futuras políticas de persecución y segregación.",
+		image: "img/registro-judios.jpg"
+	}
+];
+
+const enemyTimeline = document.querySelector("#enemyTimeline");
+const enemyTimelineViewport = document.querySelector("#enemyTimelineViewport");
+const enemyPrevButton = document.querySelector(".enemy-timeline-nav--prev");
+const enemyNextButton = document.querySelector(".enemy-timeline-nav--next");
+
+const enemyFocusYear = document.querySelector("#enemyFocusYear");
+const enemyFocusDate = document.querySelector("#enemyFocusDate");
+const enemyFocusTitle = document.querySelector("#enemyFocusTitle");
+const enemyFocusDescription = document.querySelector("#enemyFocusDescription");
+
+let enemyActiveIndex = 0;
+
+function createEnemyTimelineEvent(event, index) {
+	const article = document.createElement("article");
+	article.className = "enemy-timeline-event";
+	article.dataset.index = index;
+	article.dataset.year = event.year;
+	article.dataset.date = event.date;
+	article.dataset.title = event.title;
+	article.dataset.description = event.description;
+
+	if (index === 0) {
+		article.classList.add("is-active");
+	}
+
+	article.innerHTML = `
+		<div class="enemy-timeline-event__media">
+			<img src="${event.image}" alt="${event.title}">
+		</div>
+
+		<div class="enemy-timeline-event__dot"></div>
+
+		<div class="enemy-timeline-event__text">
+			<span class="enemy-timeline-event__year">${event.year}</span>
+			<h3 class="enemy-timeline-event__title">${event.title}</h3>
+		</div>
+	`;
+
+	article.addEventListener("click", () => {
+		activateEnemyTimelineEvent(index, true);
+	});
+
+	article.addEventListener("mouseenter", () => {
+		activateEnemyTimelineEvent(index, false);
+	});
+
+	return article;
+}
+
+function renderEnemyTimeline() {
+	if (!enemyTimeline) return;
+
+	enemyTimelineData.forEach((event, index) => {
+		const eventElement = createEnemyTimelineEvent(event, index);
+		enemyTimeline.appendChild(eventElement);
+	});
+
+	activateEnemyTimelineEvent(0, false);
+}
+
+function activateEnemyTimelineEvent(index, shouldScroll = false) {
+	const events = Array.from(document.querySelectorAll(".enemy-timeline-event"));
+
+	if (!events.length) return;
+
+	enemyActiveIndex = Math.max(0, Math.min(events.length - 1, index));
+
+	events.forEach((event, i) => {
+		event.classList.toggle("is-active", i === enemyActiveIndex);
+	});
+
+	const activeEvent = enemyTimelineData[enemyActiveIndex];
+
+	enemyFocusYear.textContent = activeEvent.year;
+	enemyFocusDate.textContent = activeEvent.date;
+	enemyFocusTitle.textContent = activeEvent.title;
+	enemyFocusDescription.textContent = activeEvent.description;
+
+	if (shouldScroll && enemyTimelineViewport) {
+		const activeElement = events[enemyActiveIndex];
+
+		const left =
+			activeElement.offsetLeft -
+			enemyTimelineViewport.clientWidth / 2 +
+			activeElement.clientWidth / 2;
+
+		enemyTimelineViewport.scrollTo({
+			left,
+			behavior: "smooth"
+		});
+	}
+}
+
+if (enemyPrevButton) {
+	enemyPrevButton.addEventListener("click", () => {
+		activateEnemyTimelineEvent(enemyActiveIndex - 1, true);
+	});
+}
+
+if (enemyNextButton) {
+	enemyNextButton.addEventListener("click", () => {
+		activateEnemyTimelineEvent(enemyActiveIndex + 1, true);
+	});
+}
+
+renderEnemyTimeline();
+
 // ─── Barra de progreso de capítulos ──────────────────────────────────────
 (function () {
 	const nav = document.querySelector('.chapter-progress');

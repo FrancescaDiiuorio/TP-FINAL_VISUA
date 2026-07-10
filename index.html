@@ -280,20 +280,66 @@
 		</h2>
 
 		<p class="chapter__body">
-		El Holocausto no comenzó en los campos de exterminio.
-		Mucho antes de las deportaciones y los asesinatos masivos,
-		el régimen nazi impulsó leyes, restricciones y actos de violencia
-		que fueron aislando progresivamente a la población judía de la vida pública.
+		El Holocausto no comenzó en los campos de exterminio. Mucho antes de las deportaciones y los asesinatos masivos, el régimen nazi impulsó leyes, restricciones y actos de violencia destinados a apartar progresivamente a la población judía de la vida pública.
+
+		La persecución comenzó en 1933, con la llegada de Adolf Hitler al poder, y se volvió cada vez más radical. A lo largo de la era nazi, el gobierno alemán y sus colaboradores privaron al pueblo judío de sus derechos, lo excluyeron de la sociedad y lo sometieron a una violencia creciente.
 		</p>
 	</div>
 	</section>
 
 	<!-- TU TIMELINE DE FLOURISH -->
-
+<!-- 
 	<section class="timeline-container">
 
 		<div class="flourish-embed flourish-timeline" data-src="visualisation/29477883"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29477883/thumbnail" width="100%" alt="timeline visualization" /></noscript></div>
 
+	</section> -->
+
+	<div class="enemy-timeline-context">
+		<p>
+			Entre 1933 y 1939, la persecución contra la población judía no avanzó de una sola vez:
+			se construyó mediante una sucesión de leyes, restricciones, mecanismos de identificación
+			y actos de violencia. La línea de tiempo muestra cómo esa exclusión fue pasando del discurso
+			estatal al despojo legal y la persecución abierta.
+		</p>
+	</div>
+
+	<section class="enemy-timeline-block" aria-label="Línea de tiempo de la construcción del enemigo">
+		<p class="enemy-timeline-block__hint">
+			Tocá cada hecho para ver cómo se acumuló la persecución.
+		</p>
+
+		<div class="enemy-timeline-shell">
+			<button class="enemy-timeline-nav enemy-timeline-nav--prev" aria-label="Evento anterior">
+				‹
+			</button>
+
+			<button class="enemy-timeline-nav enemy-timeline-nav--next" aria-label="Evento siguiente">
+				›
+			</button>
+
+			<div class="enemy-timeline-viewport" id="enemyTimelineViewport">
+				<div class="enemy-timeline" id="enemyTimeline">
+					<div class="enemy-timeline__line"></div>
+				</div>
+			</div>
+		</div>
+
+		<aside class="enemy-timeline-focus" aria-live="polite">
+			<div class="enemy-timeline-focus__year" id="enemyFocusYear">1933</div>
+
+			<div>
+				<p class="enemy-timeline-focus__date" id="enemyFocusDate">30-01-1933</p>
+				<h3 id="enemyFocusTitle">Hitler es nombrado canciller</h3>
+				<p id="enemyFocusDescription">
+					Comienza el régimen Nazi.
+				</p>
+			</div>
+		</aside>
+
+		<p class="enemy-timeline-note">
+			Las imágenes funcionan como apoyo visual de cada hecho histórico. Reemplazalas por las imágenes definitivas en el arreglo de JavaScript.
+		</p>
 	</section>
 
 	<section class="chapter chapter--stub">
