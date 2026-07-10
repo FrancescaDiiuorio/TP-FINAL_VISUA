@@ -379,15 +379,88 @@
 			<h2>Capítulo 4</h2>
 	</div>
 	
-	<section class="chapter chapter--stub">
-		<div class="chapter__intro">
-			<h2> Europa bajo el nazismo </h2>
-			<p class="chapter__body">
-				¿Cómo se expandió el control alemán sobre Europa?
-				<br></br>
-				
+	<!-- CAPÍTULO 4: EUROPA BAJO EL NAZISMO -->
+	<section class="expansion-scrolly" id="expansion-nazi">
+	<div class="expansion-scrolly__graphic">
+		<div class="expansion-map__header">
+		<p class="expansion-map__eyebrow">Europa bajo el nazismo</p>
+		<h3 id="expansion-map-year">1938</h3>
+		<p id="expansion-map-caption">
+			La expansión territorial comenzó con la anexión de Austria.
+		</p>
+		</div>
+
+		<svg
+		id="expansion-map"
+		role="img"
+		aria-label="Mapa de la expansión territorial de la Alemania nazi en Europa entre 1938 y 1942">
+		</svg>
+
+		<div class="expansion-map__legend" aria-label="Leyenda del mapa">
+		<span><i class="expansion-map__swatch expansion-map__swatch--germany"></i>Alemania</span>
+		<span><i class="expansion-map__swatch expansion-map__swatch--new"></i>Nueva incorporación</span>
+		<span><i class="expansion-map__swatch expansion-map__swatch--previous"></i>Control previo</span>
+		<span><i class="expansion-map__swatch expansion-map__swatch--outside"></i>Fuera de control</span>
+		</div>
+
+		<p class="expansion-map__method">
+		Las fronteras actuales se utilizan como aproximación cartográfica. Checoslovaquia y Yugoslavia se representan mediante sus Estados sucesores.
+		</p>
+
+		<div class="expansion-map__tooltip" id="expansion-map-tooltip" hidden></div>
+	</div>
+
+	<div class="expansion-scrolly__steps">
+		<article class="expansion-step is-active" data-year="1938">
+		<div class="expansion-step__card">
+			<p class="expansion-step__year">1938</p>
+			<h3>La expansión comienza</h3>
+			<p>
+			Alemania anexó Austria. La persecución dejó de estar limitada a las fronteras alemanas y alcanzó inmediatamente a nuevas comunidades.
 			</p>
 		</div>
+		</article>
+
+		<article class="expansion-step" data-year="1939">
+		<div class="expansion-step__card">
+			<p class="expansion-step__year">1939</p>
+			<h3>De la anexión a la guerra</h3>
+			<p>
+			La ocupación de Checoslovaquia y la invasión de Polonia transformaron la expansión territorial en una guerra continental.
+			</p>
+		</div>
+		</article>
+
+		<article class="expansion-step" data-year="1940">
+		<div class="expansion-step__card">
+			<p class="expansion-step__year">1940</p>
+			<h3>Europa occidental cae</h3>
+			<p>
+			Dinamarca, Noruega, Países Bajos, Bélgica, Luxemburgo y gran parte de Francia quedaron bajo control alemán.
+			</p>
+		</div>
+		</article>
+
+		<article class="expansion-step" data-year="1941">
+		<div class="expansion-step__card">
+			<p class="expansion-step__year">1941</p>
+			<h3>La expansión alcanza el este</h3>
+			<p>
+			Yugoslavia, Grecia, los países bálticos y amplias regiones de Bielorrusia y Ucrania quedaron sometidos a la ocupación.
+			</p>
+		</div>
+		</article>
+
+		<article class="expansion-step expansion-step--final" data-year="1942">
+		<div class="expansion-step__card">
+			<p class="expansion-step__year">1942</p>
+			<h3>La máxima extensión</h3>
+			<p>
+			Con la ocupación completa de Francia, el dominio nazi alcanzó su máxima amplitud. El territorio ya estaba controlado; lo siguiente fue organizar la persecución y el exterminio a escala continental.
+			</p>
+		</div>
+		</article>
+	</div>
 	</section>
 
 	<!-- Capitulo 5: La industrialización del exterminio  -->
@@ -524,7 +597,8 @@
 
 
 
-	
+<script src="data/expansion-data.js"></script>
+<script src="expansion-map.js" defer></script>
 <script src="./main.js" defer></script>
 
 </body>
