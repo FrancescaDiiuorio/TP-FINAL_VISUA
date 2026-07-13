@@ -2583,3 +2583,135 @@ a {
 		transition: none;
 	}
 }
+
+/* ==========================================================
+   CAPÍTULO 7 — VÍCTIMAS POR PAÍS
+   ========================================================== */
+
+.country-losses {
+	width: min(1180px, calc(100% - 40px));
+	margin: 0 auto;
+	padding: clamp(90px, 11vw, 160px) 0;
+}
+
+.country-losses__intro {
+	max-width: 850px;
+	margin: 0 auto clamp(50px, 7vw, 90px);
+	text-align: center;
+}
+
+.country-losses__eyebrow {
+	margin: 0 0 16px;
+
+	font-family: Georgia, serif;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.17em;
+	line-height: 1.4;
+	text-transform: uppercase;
+
+	color: #8a1f1f;
+}
+
+.country-losses__title {
+	max-width: 850px;
+	margin: 0 auto 30px;
+
+	font-family: "Cormorant Garamond", Georgia, serif;
+	font-size: clamp(3rem, 6vw, 6rem);
+	font-weight: 500;
+	line-height: 0.95;
+
+	color: #292521;
+	text-wrap: balance;
+}
+
+.country-losses__text {
+	max-width: 760px;
+	margin: 0 auto 18px;
+
+	font-family: Georgia, serif;
+	font-size: clamp(1rem, 1.35vw, 1.22rem);
+	line-height: 1.75;
+
+	color: #48423d;
+}
+
+.country-losses__chart {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.country-losses__chart .flourish-embed {
+	width: 100%;
+}
+
+.country-losses__notes {
+	max-width: 900px;
+	margin: 24px auto 0;
+	padding-top: 18px;
+
+	border-top: 1px solid rgba(65, 58, 52, 0.22);
+
+	font-family: Georgia, serif;
+	font-size: 0.82rem;
+	line-height: 1.6;
+
+	color: #6d655e;
+}
+
+.country-losses__notes p {
+	margin: 0 0 6px;
+}
+
+.country-losses__closing {
+	max-width: 800px;
+	margin: clamp(55px, 7vw, 90px) auto 0;
+
+	font-family: "Cormorant Garamond", Georgia, serif;
+	font-size: clamp(1.8rem, 3vw, 2.8rem);
+	font-weight: 500;
+	line-height: 1.2;
+	text-align: center;
+
+	color: #352f2a;
+	text-wrap: balance;
+}
+
+@media (max-width: 700px) {
+	.country-losses {
+		width: min(100% - 28px, 1180px);
+		padding: 75px 0;
+	}
+
+	.country-losses__intro {
+		text-align: left;
+	}
+
+	.country-losses__title {
+		margin-left: 0;
+		text-align: left;
+	}
+
+	.country-losses__text {
+		margin-left: 0;
+	}
+
+	.country-losses__closing {
+		text-align: left;
+	}
+}
+
+.country-losses__chart {
+	position: relative;
+	width: 100%;
+	min-height: 700px;
+	margin: 40px auto;
+	overflow: visible;
+}
+
+.country-losses__chart .flourish-embed {
+	display: block;
+	width: 100%;
+	min-height: 700px;
+}

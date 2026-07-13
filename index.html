@@ -833,14 +833,80 @@ Cada grupo fue perseguido bajo razones y políticas diferentes.
 
 	<!-- Capitulo 7: La magnitud humana  -->
 
-	<div class="rectangulo-parallax" id="capitulo-7" style="background-image: url('img/magnitud.jpeg');">
-			<h2>Capítulo 7</h2>
+	
+	<div
+		class="rectangulo-parallax"
+		id="capitulo-7"
+		style="background-image: url('img/magnitud.jpeg');"
+	>
+		<h2>Capítulo 7</h2>
 	</div>
-	<section class="denmark-scroll" id="denmark-scroll">
 
+
+	<!-- ======================================================
+		CONTADOR DE 6 MILLONES
+		====================================================== -->
+
+	<section
+		class="figure-scroll"
+		id="figure"
+		aria-label="La escala de las víctimas"
+	>
+		<div class="figure-scroll__sticky">
+
+			<div class="figure">
+
+				<p
+					class="figure__count"
+					id="count"
+					aria-live="off"
+				>
+					0
+				</p>
+
+				<span class="figure__unit">
+					víctimas judías en seis años
+				</span>
+
+				<div
+					class="figure__bar"
+					id="bar"
+				></div>
+
+				<p
+					class="figure__reveal"
+					id="reveal"
+				>
+					Un nombre por segundo. Día y noche. Aun así,
+					tardarías <strong>más de dos meses</strong>
+					en decirlos todos.
+				</p>
+
+			</div>
+
+			<span
+				class="figure__hint"
+				id="hint"
+			>
+				Seguí scrolleando ↓
+			</span>
+
+		</div>
+	</section>
+
+
+	<!-- ======================================================
+		COMPARACIÓN CON DINAMARCA
+		====================================================== -->
+
+	<section
+		class="denmark-scroll"
+		id="denmark-scroll"
+	>
 		<div class="denmark-scroll__sticky">
 
-			<!-- MAPAS SUPERPUESTOS -->
+			<!-- Mapas superpuestos -->
+
 			<div class="denmark-scroll__maps">
 
 				<iframe
@@ -861,17 +927,18 @@ Cada grupo fue perseguido bajo razones y políticas diferentes.
 
 			</div>
 
-			<!-- SOMBREADO MUY SUAVE EN LOS BORDES -->
+			<!-- Sombreado suave -->
+
 			<div class="denmark-scroll__vignette"></div>
 
-			<!-- TARJETAS FLOTANTES -->
+			<!-- Tarjetas flotantes -->
+
 			<div class="denmark-scroll__cards">
 
 				<article
 					class="denmark-scroll__card denmark-scroll__card--first"
-					data-denmark-card="first">
-
-
+					data-denmark-card="first"
+				>
 					<h3 class="denmark-scroll__title">
 						¿Qué significan realmente seis millones de víctimas?
 					</h3>
@@ -885,15 +952,12 @@ Cada grupo fue perseguido bajo razones y políticas diferentes.
 					<p class="denmark-scroll__reference">
 						Cada punto representa 20.000 personas.
 					</p>
-
 				</article>
 
 				<article
 					class="denmark-scroll__card denmark-scroll__card--second"
-					data-denmark-card="second">
-
-
-
+					data-denmark-card="second"
+				>
 					<h3 class="denmark-scroll__title">
 						No desapareció solamente una cifra
 					</h3>
@@ -907,68 +971,91 @@ Cada grupo fue perseguido bajo razones y políticas diferentes.
 					<p class="denmark-scroll__reference">
 						La ubicación de los puntos sobre el mapa es ilustrativa.
 					</p>
-
 				</article>
 
 			</div>
 
-			<!-- FUENTES -->
-			<p class="denmark-scroll__sources">
-				Fuentes: United States Holocaust Memorial Museum y
-				Statistics Denmark, junio de 2026.
+		</div>
+	</section>
+
+
+	<!-- ======================================================
+		VÍCTIMAS POR PAÍS
+		ESTA SECCIÓN YA ESTÁ FUERA DEL SCROLL DE DINAMARCA
+		====================================================== -->
+
+	<section
+		class="country-losses"
+		aria-labelledby="country-losses-title"
+	>
+		<div class="country-losses__intro">
+
+			<p class="country-losses__eyebrow">
+				LA GEOGRAFÍA DE LA PÉRDIDA
 			</p>
 
-			<div class="denmark-scroll__instruction">
-				<span>Deslizá para continuar</span>
-				<span aria-hidden="true">↓</span>
+			<h3
+				class="country-losses__title"
+				id="country-losses-title"
+			>
+				¿Dónde se concentraron las víctimas?
+			</h3>
+
+			<p class="country-losses__text">
+				Comparar seis millones de víctimas con la población de
+				Dinamarca permite dimensionar el total. Sin embargo, esa
+				pérdida no se distribuyó de la misma manera en toda Europa.
+			</p>
+
+			<p class="country-losses__text">
+				Al observar las estimaciones por país o territorio de
+				residencia antes de la guerra, Polonia y la Unión Soviética
+				concentran las mayores cifras absolutas entre los casos
+				seleccionados. Cada barra vuelve más concreta una parte de
+				ese total: comunidades, familias e historias que fueron
+				destruidas.
+			</p>
+
+		</div>
+
+		<div class="country-losses__chart">
+
+			<div
+				class="flourish-embed flourish-chart"
+				data-src="visualisation/29669144"
+			>
+				<noscript>
+					<img
+						src="https://public.flourish.studio/visualisation/29669144/thumbnail"
+						width="100%"
+						alt="Gráfico de barras con la cantidad estimada de víctimas judías por país"
+					>
+				</noscript>
 			</div>
 
 		</div>
 
-	</section>
-		<!-- El capítulo de la cifra -->
-		<section class="figure-scroll" id="figure" aria-label="La escala de las víctimas">
-			<div class="figure-scroll__sticky">
+		<div class="country-losses__notes">
 
-				<div class="figure">
+			<p>
+				Las cifras corresponden a estimaciones históricas y a
+				fronteras territoriales de la época. Para los países
+				presentados mediante un rango, se utilizó el valor medio.
+			</p>
 
-					<p
-						class="figure__count"
-						id="count"
-						aria-live="off"
-					>
-						0
-					</p>
+			<p>
+				<strong>Fuente:</strong>
+				United States Holocaust Memorial Museum.
+				Valores expresados en miles de personas.
+			</p>
 
-					<span class="figure__unit">
-						víctimas judías en seis años
-					</span>
+		</div>
 
-					<div
-						class="figure__bar"
-						id="bar"
-					></div>
-
-					<p
-						class="figure__reveal"
-						id="reveal"
-					>
-						Un nombre por segundo. Día y noche. Aun así,
-						tardarías <strong>más de dos meses</strong>
-						en decirlos todos.
-					</p>
-
-				</div>
-
-				<span
-					class="figure__hint"
-					id="hint"
-				>
-					Seguí scrolleando ↓
-				</span>
-
-			</div>
-		</section>
+		<p class="country-losses__closing">
+			El gráfico no reemplaza la cifra de seis millones: la descompone.
+			Permite pasar de un número difícil de imaginar a los territorios
+			concretos donde esa ausencia dejó sus marcas.
+		</p>
 
 	</section>
 
@@ -1005,6 +1092,8 @@ Cada grupo fue perseguido bajo razones y políticas diferentes.
 		</p>
 
 	</section>
+
+
 </main>
 <footer class="site-footer">
 	<div class="site-footer__inner">
@@ -1045,6 +1134,9 @@ Cada grupo fue perseguido bajo razones y políticas diferentes.
 <script src="data/expansion-data.js"></script>
 <script src="expansion-map-cap4.js" defer></script>
 <script src="./main.js" defer></script>
-
+<script src="https://public.flourish.studio/resources/embed.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
+
+
