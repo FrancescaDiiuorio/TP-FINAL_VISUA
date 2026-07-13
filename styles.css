@@ -750,19 +750,21 @@ a {
 /* Sin fondo ni sombra propios: usa el blanco de la página, como el resto del sitio. */
 .exodo-mapa {
 	position: relative;
-	display: flex;
-	align-items: flex-start;
-	width: 100%;
-	margin: 3rem auto 0;
+	display: grid;
+	width: 100vw;
+	margin-top: 3rem;
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
 }
 
-/* Mapa fijo (sticky) mientras la narrativa scrollea al lado. */
+/* Mapa fijo (sticky) a todo el ancho de la pantalla, mientras la narrativa
+   scrollea encima, en el mismo espacio (grid con una sola celda). */
 .scrolly__graphic {
+	grid-area: 1 / 1;
 	position: sticky;
 	top: 0;
-	width: 60%;
+	width: 100%;
 	height: 100vh;
-	flex-shrink: 0;
 }
 
 #map {
@@ -797,9 +799,14 @@ a {
 	height: 100% !important;
 }
 
+/* Narrativa: pasa por encima del mapa, centrada horizontalmente. */
 .scrolly__narrative {
-	width: 40%;
-	padding: 0 3vw;
+	grid-area: 1 / 1;
+	position: relative;
+	z-index: 2;
+	width: min(90%, 34rem);
+	margin: 0 auto;
+	padding: 0;
 }
 
 /* Tarjetas de la narrativa: mismo tratamiento que .tarjeta-scroll del resto del sitio. */

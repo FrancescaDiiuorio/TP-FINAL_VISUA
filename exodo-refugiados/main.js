@@ -66,7 +66,14 @@ const NOTAS = {
 };
 
 /* ---------- Utilidades ---------- */
-const fmt = d3.format(",");// separador de miles
+// Locale es-AR: punto como separador de miles, coma como decimal.
+const localeES = d3.formatLocale({
+  decimal: ",",
+  thousands: ".",
+  grouping: [3],
+  currency: ["$", ""],
+});
+const fmt = localeES.format(",");// separador de miles
 
 // Tabla ISO3 → id numérico y su inverso (se rellenan al cargar)
 let ISO3_A_NUM = {};
@@ -195,7 +202,7 @@ function iniciar(geo, datos) {
       console.warn("No se encontró geometría para ISO3:", d.iso3, d.destino);
       return;
     }
-    const destino = path.centroid(feature);
+    const destino = path.centroid(d.iso3 === "FRA" ? poligonoContinentalFrancia(feature) : feature);
     if (EUROPA_CERCANA.has(d.iso3)) puntosEuropa.push(destino);
     const dCurva = arco(origen, destino);
 
@@ -283,6 +290,17 @@ function actualizarZoom(idx) {
     : "translate(0,0) scale(1)";
 
   g.transition().duration(900).ease(d3.easeCubicInOut).attr("transform", transform);
+}
+
+/* El MultiPolygon de Francia incluye la Guayana Francesa (Sudamérica) junto con
+   Francia continental y Córcega. path.centroid() promedia por área los 3 polígonos,
+   y como la Guayana pesa mucho, el centroide combinado queda pegado a la frontera
+   con España en vez de caer en Francia continental. Se usa solo para FRA, más abajo. */
+function poligonoContinentalFrancia(feature) {
+  const continental = feature.geometry.coordinates.reduce((a, b) =>
+    d3.geoArea({ type: "Polygon", coordinates: b }) > d3.geoArea({ type: "Polygon", coordinates: a }) ? b : a
+  );
+  return { type: "Feature", geometry: { type: "Polygon", coordinates: continental } };
 }
 
 /* ============================================================
