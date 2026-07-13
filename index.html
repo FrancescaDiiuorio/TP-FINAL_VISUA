@@ -10,6 +10,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="./styles.css" />
+	<link rel="stylesheet" href="export/timeline.css" />
 </head>
 <body>
 	<nav class="chapter-progress" aria-label="Progreso de capítulos">
@@ -91,18 +92,18 @@
 		<section class="chapter chapter--intro">
 			<div class="chapter__intro">
 				<p class="chapter__eyebrow">Introducción</p>
-				<h2>Cuando una cifra deja de entrar en la cabeza</h2>
-				<p class="chapter__lead">
-					El Holocausto fue uno de los crímenes más devastadores de la historia moderna. Pero cuando escuchamos una cifra como <em>"6 millones de muertos"</em>, nuestra mente se rinde: es un número demasiado grande para sentirlo.
+				<h2>Entender el Holocausto para entender cómo ocurrió</h2>
+				<p class="chapter__body">
+					El Holocausto (1933-1945) fue la persecución y el asesinato sistemático de aproximadamente seis millones de judíos europeos, organizado y auspiciado por el régimen alemán nazi y sus colaboradores. Además de perpetrar el Holocausto, la Alemania nazi también persiguió y asesinó a millones de otras víctimas.  
 				</p>
 				<p class="chapter__body">
-					No podemos imaginar 6 millones de rostros, 6 millones de historias interrumpidas, 6 millones de ausencias.
+					El Museo Conmemorativo del Holocausto de Estados Unidos define los años del Holocausto de 1933 a 1945. La era del Holocausto comenzó en 1933, cuando Adolf Hitler y el Partido Nazi llegaron al poder en Alemania. Terminó en 1945, cuando las potencias aliadas derrotaron a la Alemania nazi en la Segunda Guerra Mundial. El Holocausto también se denomina a veces <strong>“Shoah”</strong>, palabra hebrea que significa <strong>“catástrofe”</strong>.
 				</p>
 			</div>
 		</section>
 
 		<!-- Capitulo 0: contexto histórico -->
-		<div class="rectangulo-parallax" id="capitulo-0" style="background-image: url('img/Escape.jpg');">
+		<div class="rectangulo-parallax" id="capitulo-0" style="background-image: url('img/warisover.jpeg');">
 			<h2>Capítulo 0</h2>
 		</div>
 
@@ -119,7 +120,102 @@
 
 			</div>
 		</section>
-	
+
+		<!-- Capitulo 0:  -->
+		<!-- Timeline horizontal 1918-1933 -->
+		<div class="th-section" id="thPin" style="height:100vh;">
+			<div class="th-track" id="thTrack">
+
+				<div class="th-panel">
+					<div class="th-watermark">1918</div>
+					<div class="th-card">
+						<div class="th-eyebrow">1918</div>
+						<h2>El armisticio</h2>
+						<p>
+							En noviembre de 1918, ante la imposibilidad de continuar la guerra, Alemania firmó el armisticio con los Aliados. El acuerdo obligó al país a retirar sus tropas, ceder los territorios ocupados, entregar armamento y aceptar la ocupación de Renania, marcando el inicio de una profunda crisis política y económica.
+						</p>
+					</div>
+					<div class="th-figure-wrap">
+						<div class="th-figure"><img src="img/armisticio.jpg" alt="Armisticio, 1918"></div>
+						<p class="th-caption">Los oficiales aliados posan frente a un vagón de tren, en el cual el delegado alemán firmó el armisticio. Compiègne, Francia, 11 de noviembre de 1918.<br>Foto de dominio público</p>
+					</div>
+				</div>
+
+				<div class="th-panel">
+					<div class="th-watermark">1919</div>
+					<div class="th-card">
+						<div class="th-eyebrow">1919</div>
+						<h2>Versalles</h2>
+						<p>
+							En 1919, el Tratado de Versalles responsabilizó a Alemania por el inicio de la Primera Guerra Mundial y le impuso fuertes reparaciones económicas, pérdidas territoriales y restricciones militares. La humillación provocada por estas condiciones alimentó el descontento social y contribuyó al ascenso del nazismo en los años siguientes.						
+						</p>
+					</div>
+					<div class="th-figure-wrap">
+						<div class="th-figure"><img src="img/soldados.jpeg" alt="Tratado de Versalles, 1919"></div>
+						<p class="th-caption">Los oficiales aliados posan frente a un vagón de tren, en el cual el delegado alemán firmó el armisticio. Compiègne, Francia, 11 de noviembre de 1918.<br>Foto de dominio público</p>
+					</div>
+				</div>
+
+				<div class="th-panel">
+					<div class="th-watermark">1923</div>
+					<div class="th-card">
+						<div class="th-eyebrow">1923</div>
+						<h2>Hiperinflación</h2>
+						<p>
+							En 1923, la imposibilidad de pagar las reparaciones de guerra y la ocupación del Ruhr desencadenaron una hiperinflación sin precedentes. El gobierno imprimió grandes cantidades de dinero, la moneda se desplomó y los precios se dispararon: una barra de pan llegó a costar 200.000 millones de marcos. La crisis dejó a millones de alemanes en la pobreza y aumentó el descontento con la República de Weimar.
+						</p>
+				</div>
+					<div class="th-figure-wrap">
+						<div class="th-figure"><img src="img/Escape.jpg" alt="Hiperinflación, 1923"></div>
+						<p class="th-caption">Los oficiales aliados posan frente a un vagón de tren, en el cual el delegado alemán firmó el armisticio. Compiègne, Francia, 11 de noviembre de 1918.<br>Foto de dominio público</p>
+					</div>
+				</div>
+
+				<div class="th-panel">
+					<div class="th-watermark">1929</div>
+					<div class="th-card">
+						<div class="th-eyebrow">1929</div>
+						<h2>La crisis económica</h2>
+						<p>
+							Tras el crac de Wall Street de 1929, Estados Unidos retiró sus préstamos e inversiones de Alemania. La economía alemana volvió a colapsar, el desempleo aumentó drásticamente y el descontento social creó un escenario favorable para el crecimiento del nazismo.
+						</p>	
+					</div>
+					<div class="th-figure-wrap">
+						<div class="th-figure"><img src="img/hero_ft.jpeg" alt="Crisis económica, 1929"></div>
+						<p class="th-caption">Los oficiales aliados posan frente a un vagón de tren, en el cual el delegado alemán firmó el armisticio. Compiègne, Francia, 11 de noviembre de 1918.<br>Foto de dominio público</p>
+					</div>
+				</div>
+
+				<div class="th-panel">
+					<div class="th-watermark">1932</div>
+					<div class="th-card">
+						<div class="th-eyebrow">1932</div>
+						<h2>Primer partido del Reichstag</h2>
+						<p>El NSDAP se convierte en la fuerza más votada. Hindenburg todavía duda en nombrar a Hitler.</p>
+					</div>
+					<div class="th-figure"><img src="img/soldados_nazi.jpg" alt="Elecciones, 1932"></div>
+				</div>
+
+				<div class="th-panel" style="border-right:none;">
+					<div class="th-watermark">1933</div>
+					<div class="th-card">
+						<div class="th-eyebrow">1933</div>
+						<h2>Hitler, canciller</h2>
+						<p>Nombrado el 30 de enero de 1933. Hindenburg cede ante la presión, convencido de poder controlarlo.</p>
+					</div>
+					<div class="th-figure"><img src="img/hitler_canciller.jpg" alt="Hitler nombrado canciller, 1933"></div>
+				</div>
+
+			</div>
+
+			<div class="th-rail" id="thRail">
+				<div class="th-counter" id="thCounter">01 / 06</div>
+				<div class="th-line-wrap" id="thLineWrap">
+					<div class="th-line-fill" id="thLineFill"></div>
+				</div>
+			</div>
+		</div>
+
 	<!-- Capitulo 1:  -->
 
 	<div class="rectangulo-parallax" id="capitulo-1" style="background-image: url('img/Escape.jpg');">
@@ -186,7 +282,7 @@
 				oportuno, las circunstancias y la pura suerte.
 			</p>
 
-	</div>
+		</div>
 
 		<div class="bloque-interactivo">
 				
@@ -386,15 +482,23 @@
 					<span class="legend__dot legend__dot--origin"></span> Alemania (origen)
 					<span class="legend__note">El grosor de la línea representa el número de refugiados</span>
 				</div>
-				<div class="exodo-mapa__chart" id="exodo-chart-overlay">
-					<div class="flourish-embed flourish-chart" data-src="visualisation/29597804"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29597804/thumbnail" width="70%" alt="Gráfico de barras: refugiados por país" /></noscript></div>
-				</div>
 			</div>
 			<div class="scrolly__narrative" id="narrative"></div>
 		</div>
 		<p class="exodo-mapa__fuente">
 			Fuente: <a href="https://www.annefrank.org/es/ana-frank/en-foco/la-imposibilidad-de-huir-1933-1942-inmigracion-judia-1933-1942/" target="_blank" rel="noopener noreferrer">Anne Frank House — "La (im)posibilidad de huir (1933–1942)"</a>
 		</p>
+
+		<div class="exodo-chart">
+			<p class="chapter__eyebrow">
+				Un destino dominante
+			</p>
+			<h2>La concentración del refugio</h2>
+			<p class="exodo-chart__text">Al ordenar los 25 principales destinos, aparece un patrón claro: uno de cada cinco refugiados se estableció en Estados Unidos.</p>
+			<div class="exodo-chart__embed">
+				<div class="flourish-embed flourish-chart" data-src="visualisation/29597804"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29597804/thumbnail" width="70%" alt="Gráfico de barras: refugiados por país" /></noscript></div>
+			</div>
+		</div>
 	</section>
 
 	<!-- Capitulo 4: Europa bajo el nazismo  -->
@@ -1121,6 +1225,7 @@ Cada grupo fue perseguido bajo razones y políticas diferentes.
 <script src="exodo-refugiados/lib/topojson-client.min.js"></script>
 <script src="exodo-refugiados/lib/gsap.min.js"></script>
 <script src="exodo-refugiados/lib/ScrollTrigger.min.js"></script>
+<script src="export/timeline.js"></script>
 <script src="exodo-refugiados/data/world-atlas.js"></script>
 <script src="exodo-refugiados/main.js"></script>
 
@@ -1128,7 +1233,6 @@ Cada grupo fue perseguido bajo razones y políticas diferentes.
 
 <script src="data/expansion-data.js"></script>
 <script src="expansion-map-cap4.js" defer></script>
-<script src="./main.js" defer></script>
 <script src="https://public.flourish.studio/resources/embed.js"></script>
 <script src="main.js"></script>
 </body>

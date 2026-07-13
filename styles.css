@@ -26,15 +26,17 @@
 /* Habilita un scroll suave cuando se navega por anclas o cambios de sección. */
 html {
 	scroll-behavior: smooth;
+	overflow-x: clip;
 }
 
 /* Estilos base del documento: fondo, tipografía y color general del texto. */
 body {
 	margin: 0;
-    
+    overflow-x: clip;
+
     /* Reemplazamos todos los gradients por el color sólido */
-    background-color: #ffffff; 
-    
+    background-color: #ffffff;
+
     color: #000000;
     font-family: "Georgia", Arial, sans-serif;
     line-height: 1.5;
@@ -773,32 +775,6 @@ a {
 	display: block;
 }
 
-/* Gráfico de barras (Flourish): tapa el mapa en el último paso del scroll. */
-.exodo-mapa__chart {
-	position: absolute;
-	inset: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	background: #ffffff;
-	padding: 1.5rem;
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity 0.5s ease;
-}
-.exodo-mapa__chart.is-active {
-	opacity: 1;
-	pointer-events: auto;
-}
-.exodo-mapa__chart .flourish-embed {
-	width: 100%;
-	height: 100%;
-}
-.exodo-mapa__chart .flourish-embed iframe {
-	height: 100% !important;
-}
-
 /* Narrativa: pasa por encima del mapa, centrada horizontalmente. */
 .scrolly__narrative {
 	grid-area: 1 / 1;
@@ -978,6 +954,36 @@ a {
 	color: rgba(31, 31, 31, 0.75);
 	text-decoration: underline;
 	text-underline-offset: 2px;
+}
+
+/* Gráfico de barras (Flourish): sección propia, separada del mapa. */
+.exodo-chart {
+	width: min(100%, 56rem);
+	margin: 4rem auto 0;
+	text-align: center;
+}
+.exodo-chart__title {
+	font-family: "Cormorant Garamond", Georgia, serif;
+	font-size: clamp(1.6rem, 3vw, 2.2rem);
+	font-weight: 600;
+	color: #1f1f1f;
+	margin: 0 0 0.3rem;
+}
+.exodo-chart__subtitle {
+	font-size: 1rem;
+	font-weight: 700;
+	color: #950606;
+	margin: 0 0 0.9rem;
+}
+.exodo-chart__text {
+	max-width: var(--measure);
+	margin: 0 auto 2rem;
+	font-size: 1.075rem;
+	line-height: 1.8;
+	color: var(--ink-soft);
+}
+.exodo-chart__embed {
+	width: 100%;
 }
 
 /* En pantallas medianas, el mapa pasa arriba de la narrativa. */

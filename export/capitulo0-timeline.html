@@ -1,0 +1,92 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     CAPÍTULO 0 — LÍNEA DE TIEMPO HORIZONTAL (1918–1933)
+     Pegar dentro de <body>, en el lugar donde va el Capítulo 0.
+     Requiere (en el <head> o antes de cerrar </body>, en este orden):
+       <link rel="stylesheet" href="timeline.css">
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+       <script src="timeline.js"></script>   (después de gsap y ScrollTrigger)
+
+     Reemplazá cada src="TU-FOTO-XXXX.jpg" por tus imágenes de archivo.
+═══════════════════════════════════════════════════════════════ -->
+
+<div class="th-buffer" style="height:100vh;">
+  <div>
+    <p style="margin:0 0 10px; font:700 0.82rem/1 Georgia,serif; letter-spacing:.22em; text-transform:uppercase; color:#950606;">Antes de 1918</p>
+    <h1 style="margin:0; font:600 clamp(2.6rem,6vw,5rem)/0.98 'Cormorant Garamond',Georgia,serif; letter-spacing:-0.03em; color:#1f1f1f; max-width:720px;">De la derrota a la dictadura</h1>
+    <p style="margin:20px auto 0; font:400 1.075rem/1.7 Georgia,serif; color:rgba(31,31,31,0.66); max-width:480px;">Seguí scrolleando: la siguiente sección avanza en horizontal.</p>
+  </div>
+</div>
+
+<section class="th-section" id="thPin" style="height:100vh;">
+  <div class="th-track" id="thTrack">
+
+    <div class="th-panel">
+      <div class="th-watermark">1918</div>
+      <div class="th-card">
+        <div class="th-eyebrow">1918</div>
+        <h2>El armisticio</h2>
+        <p>Alemania firma la derrota; el ejército vuelve sin haber perdido una batalla en su propio suelo. Nace el mito del "golpe por la espalda".</p>
+      </div>
+      <div class="th-figure"><img src="TU-FOTO-1918.jpg" alt="Armisticio, 1918"></div>
+    </div>
+
+    <div class="th-panel">
+      <div class="th-watermark">1919</div>
+      <div class="th-card">
+        <div class="th-eyebrow">1919</div>
+        <h2>Versalles</h2>
+        <p>El tratado impone reparaciones y humillación nacional. La joven República de Weimar carga con la culpa de la guerra.</p>
+      </div>
+      <div class="th-figure"><img src="TU-FOTO-1919.jpg" alt="Tratado de Versalles, 1919"></div>
+    </div>
+
+    <div class="th-panel">
+      <div class="th-watermark">1923</div>
+      <div class="th-card">
+        <div class="th-eyebrow">1923</div>
+        <h2>Hiperinflación</h2>
+        <p>Billetes usados como papel de empapelar. Los ahorros de toda una vida se evaporan; el mismo año, un golpe fallido en Múnich.</p>
+      </div>
+      <div class="th-figure"><img src="TU-FOTO-1923.jpg" alt="Hiperinflación, 1923"></div>
+    </div>
+
+    <div class="th-panel">
+      <div class="th-watermark">1929</div>
+      <div class="th-card">
+        <div class="th-eyebrow">1929</div>
+        <h2>La crisis económica</h2>
+        <p>El crac mundial golpea a Alemania. El desempleo masivo alimenta el resentimiento y radicaliza el voto.</p>
+      </div>
+      <div class="th-figure"><img src="TU-FOTO-1929.jpg" alt="Crisis económica, 1929"></div>
+    </div>
+
+    <div class="th-panel">
+      <div class="th-watermark">1932</div>
+      <div class="th-card">
+        <div class="th-eyebrow">1932</div>
+        <h2>Primer partido del Reichstag</h2>
+        <p>El NSDAP se convierte en la fuerza más votada. Hindenburg todavía duda en nombrar a Hitler.</p>
+      </div>
+      <div class="th-figure"><img src="TU-FOTO-1932.jpg" alt="Elecciones, 1932"></div>
+    </div>
+
+    <div class="th-panel" style="border-right:none;">
+      <div class="th-watermark">1933</div>
+      <div class="th-card">
+        <div class="th-eyebrow">1933</div>
+        <h2>Hitler, canciller</h2>
+        <p>Nombrado el 30 de enero de 1933. Hindenburg cede ante la presión, convencido de poder controlarlo.</p>
+      </div>
+      <div class="th-figure"><img src="TU-FOTO-1933.jpg" alt="Hitler nombrado canciller, 1933"></div>
+    </div>
+
+  </div>
+
+  <div class="th-rail" id="thRail">
+    <div class="th-counter" id="thCounter">01 / 06</div>
+    <div class="th-line-wrap" id="thLineWrap">
+      <div class="th-line-fill" id="thLineFill"></div>
+    </div>
+  </div>
+</section>

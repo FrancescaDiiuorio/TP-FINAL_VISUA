@@ -86,7 +86,6 @@ function iso3De(feature) {
 
 /* ---------- Estado del mapa ---------- */
 const svgEl = document.getElementById("map");
-const chartOverlayEl = document.getElementById("exodo-chart-overlay"); // tapa el mapa en el último paso
 let svg, g, path, projection;
 let rutas = [];          // { iso3, feature, pathEl, labelEl, dotEl, largo }
 let dibujadas = new Set();
@@ -404,17 +403,8 @@ function construirNarrativa(datos) {
     idx: datos.length,
     titulo: "El mapa completo",
     subtitulo: "El alcance del desplazamiento",
-    texto: "Los datos evidencian un movimiento sin precedentes. En un lapso de seis años, el flujo migratorio se expandió de forma drástica, distribuyendo a cientos de miles de personas por diversas regiones de América, África, Asia y Oceanía.",
+    texto: "En este mapa se observa cuántos judíos huyeron de Alemania entre 1933 y 1939 y a qué países emigraron. Estas cifras son estimaciones. Muchos refugiados cruzaban las fronteras sin papeles válidos y no todos los países llevaban estadísticas precisas. Además, había refugiados que pasaban de un país a otro, como por ejemplo los tíos de Ana.",
     total,
-  }));
-
-  // Último paso: acá el gráfico de barras reemplaza al mapa (a la izquierda)
-  cont.appendChild(crearPaso({
-    clase: "exodo-step--final",
-    idx: datos.length + 2,
-    titulo: "La concentración del refugio",
-    subtitulo: "Un destino dominante",
-    texto: "Al ordenar los 25 principales destinos, aparece un patrón claro: uno de cada cinco refugiados se estableció en Estados Unidos.",
   }));
 }
 
@@ -464,9 +454,6 @@ function activarPaso(idx) {
   // El total sobre Alemania se ve en la intro y en el cierre; mientras se
   // recorre destino por destino, cede el lugar al nombre de cada país.
   totalLabelEl.classList.toggle("is-visible", idx < 0 || idx >= rutas.length);
-
-  // Último paso: el gráfico de barras tapa el mapa (a la izquierda)
-  if (chartOverlayEl) chartOverlayEl.classList.toggle("is-active", idx === rutas.length + 2);
 
   if (idx < 0) {
     // Introducción: sólo Alemania → ocultar todas las rutas
