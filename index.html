@@ -302,13 +302,7 @@
 		</div>
 	</section>
 
-	<!-- TU TIMELINE DE FLOURISH -->
-<!-- 
-	<section class="timeline-container">
-
-		<div class="flourish-embed flourish-timeline" data-src="visualisation/29477883"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29477883/thumbnail" width="100%" alt="timeline visualization" /></noscript></div>
-
-	</section> -->
+	
 
 	<div class="enemy-timeline-context">
 		<p class="chapter__body">
@@ -410,23 +404,25 @@
 	</div>
 	
 	<section class="chapter chapter--stub">
-		<div class="chapter__intro">
+
+		<div class="chapter__intro chapter__intro--opening">
 
 			<p class="chapter__eyebrow">
 				Europa bajo el nazismo
 			</p>
 
 			<h2>
-				¿Cómo convirtió la expansión territorial la persecución
-				en un crimen continental?
+				¿Cómo se expandió el control alemán sobre Europa?
 			</h2>
 
+			<p>El nazismo, al expandirse, convirtió la persecución en un crimen continental.</p>
+
 		</div>
+
 	</section>
 	<section class="expansion-scrolly" id="expansion-nazi">
 	<div class="expansion-scrolly__graphic">
 		<div class="expansion-map__header">
-		<p class="expansion-map__eyebrow">Europa bajo el nazismo</p>
 		<h3 id="expansion-map-year">1938</h3>
 		<p id="expansion-map-caption">
 			La expansión territorial comenzó con la anexión de Austria.
@@ -508,6 +504,11 @@
 
 	<!-- Capitulo 5: La industrialización del exterminio  -->
 
+	<div class="rectangulo-parallax" id="capitulo-5" style="background-image: url('img/campos.png');">
+			<h2>Capítulo 5</h2>
+	</div>
+	
+
 	<section class="chapter chapter--stub">
 		<div class="chapter__intro">
 
@@ -544,7 +545,7 @@
 
 	<!-- Capitulo 6: Las víctimas  -->
 
-	<div class="rectangulo-parallax" id="capitulo-6" style="background-image: url('img/barbarroja.jpg');">
+	<div class="rectangulo-parallax" id="capitulo-6" style="background-image: url('img/victimas.jpg');">
 			<h2>Capítulo 6</h2>
 	</div>
 	<section class="chapter chapter--stub">
@@ -832,24 +833,99 @@ Cada grupo fue perseguido bajo razones y políticas diferentes.
 
 	<!-- Capitulo 7: La magnitud humana  -->
 
-	<div class="rectangulo-parallax" id="capitulo-7" style="background-image: url('img/barbarroja.jpg');">
+	<div class="rectangulo-parallax" id="capitulo-7" style="background-image: url('img/magnitud.jpeg');">
 			<h2>Capítulo 7</h2>
 	</div>
-	<section class="chapter chapter--stub">
+	<section class="denmark-scroll" id="denmark-scroll">
 
-		<div class="chapter__intro">
+		<div class="denmark-scroll__sticky">
 
-			<p class="chapter__eyebrow">
-				La magnitud humana
+			<!-- MAPAS SUPERPUESTOS -->
+			<div class="denmark-scroll__maps">
+
+				<iframe
+					class="denmark-scroll__map denmark-scroll__map--visible"
+					src="https://flo.uri.sh/visualisation/29668507/embed"
+					title="Mapa de Dinamarca con puntos que representan seis millones de víctimas"
+					loading="eager"
+					scrolling="no">
+				</iframe>
+
+				<iframe
+					class="denmark-scroll__map denmark-scroll__map--empty"
+					src="https://flo.uri.sh/visualisation/29668784/embed"
+					title="Mapa de Dinamarca sin puntos"
+					loading="eager"
+					scrolling="no">
+				</iframe>
+
+			</div>
+
+			<!-- SOMBREADO MUY SUAVE EN LOS BORDES -->
+			<div class="denmark-scroll__vignette"></div>
+
+			<!-- TARJETAS FLOTANTES -->
+			<div class="denmark-scroll__cards">
+
+				<article
+					class="denmark-scroll__card denmark-scroll__card--first"
+					data-denmark-card="first">
+
+
+					<h3 class="denmark-scroll__title">
+						¿Qué significan realmente seis millones de víctimas?
+					</h3>
+
+					<p class="denmark-scroll__paragraph">
+						Seis millones de judíos fueron asesinados durante el
+						Holocausto. Una cifra aproximadamente equivalente a toda
+						la población actual de Dinamarca.
+					</p>
+
+					<p class="denmark-scroll__reference">
+						Cada punto representa 20.000 personas.
+					</p>
+
+				</article>
+
+				<article
+					class="denmark-scroll__card denmark-scroll__card--second"
+					data-denmark-card="second">
+
+
+
+					<h3 class="denmark-scroll__title">
+						No desapareció solamente una cifra
+					</h3>
+
+					<p class="denmark-scroll__paragraph">
+						Desaparecieron vidas, familias, comunidades e historias
+						individuales. Detrás de cada punto había una persona con
+						un nombre, un pasado y un futuro.
+					</p>
+
+					<p class="denmark-scroll__reference">
+						La ubicación de los puntos sobre el mapa es ilustrativa.
+					</p>
+
+				</article>
+
+			</div>
+
+			<!-- FUENTES -->
+			<p class="denmark-scroll__sources">
+				Fuentes: United States Holocaust Memorial Museum y
+				Statistics Denmark, junio de 2026.
 			</p>
 
-			<h2>
-				¿Qué significan realmente seis millones de víctimas?
-			</h2>
+			<div class="denmark-scroll__instruction">
+				<span>Deslizá para continuar</span>
+				<span aria-hidden="true">↓</span>
+			</div>
 
 		</div>
 
-
+	</section>
 		<!-- El capítulo de la cifra -->
 		<section class="figure-scroll" id="figure" aria-label="La escala de las víctimas">
 			<div class="figure-scroll__sticky">

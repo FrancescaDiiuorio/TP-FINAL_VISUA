@@ -2252,3 +2252,334 @@ a {
 		transition: none;
 	}
 }
+
+/*  Capitulo 7: La magnitud humana */
+
+#capitulo-7 {
+  position: relative;
+  overflow: hidden;
+
+  background-image: url("../img/tu-imagen.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#capitulo-7::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(10, 10, 10, 0.52);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+
+  z-index: 1;
+  pointer-events: none;
+}
+
+#capitulo-7 > * {
+  position: relative;
+  z-index: 2;
+}
+
+#capitulo-7 h2 {
+  color: white;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.85);
+}
+/* ==========================================================
+   DINAMARCA — MAPA FULL WIDTH CON TEXTOS FLOTANTES
+   ========================================================== */
+
+.denmark-scroll {
+	position: relative;
+
+	/*
+		La sección ocupa todo el ancho de la ventana,
+		incluso si está dentro de un contenedor con max-width.
+	*/
+	width: 100vw;
+	height: 320vh;
+	margin-left: calc(50% - 50vw);
+
+	background: #f3f0e9;
+}
+
+.denmark-scroll__sticky {
+	position: sticky;
+	top: 0;
+
+	width: 100vw;
+	height: 100vh;
+
+	overflow: hidden;
+	background: #f3f0e9;
+	isolation: isolate;
+}
+
+/* ==========================================================
+   MAPAS
+   ========================================================== */
+
+.denmark-scroll__maps {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.denmark-scroll__map {
+	position: absolute;
+	inset: 0;
+
+	display: block;
+	width: 100%;
+	height: 100%;
+
+	border: 0;
+	background: #ffffff;
+
+	/*
+		Evita líneas o espacios extra debajo del iframe.
+	*/
+	vertical-align: top;
+}
+
+.denmark-scroll__map--visible {
+	z-index: 2;
+	opacity: 1;
+}
+
+.denmark-scroll__map--empty {
+	z-index: 1;
+	opacity: 0;
+	pointer-events: none;
+}
+
+/*
+	Sombreado muy suave para que la tarjeta tenga mayor contraste,
+	sin oscurecer todo el mapa.
+*/
+
+.denmark-scroll__vignette {
+	position: absolute;
+	inset: 0;
+	z-index: 3;
+
+	pointer-events: none;
+
+	background:
+		linear-gradient(
+			90deg,
+			rgba(25, 22, 19, 0.12) 0%,
+			transparent 23%,
+			transparent 77%,
+			rgba(25, 22, 19, 0.08) 100%
+		);
+}
+
+/* ==========================================================
+   TARJETAS
+   ========================================================== */
+
+.denmark-scroll__cards {
+	position: absolute;
+	inset: 0;
+	z-index: 5;
+
+	pointer-events: none;
+}
+
+.denmark-scroll__card {
+	position: absolute;
+	top: 50%;
+	right: clamp(24px, 5vw, 80px);
+	left: auto;
+
+	width: min(360px, calc(100vw - 48px));
+	padding: 26px 28px;
+
+	box-sizing: border-box;
+
+	background: rgba(246, 242, 235, 0.84);
+	border: 1px solid rgba(67, 58, 50, 0.16);
+
+	box-shadow:
+		0 14px 45px rgba(20, 17, 14, 0.14),
+		0 3px 10px rgba(20, 17, 14, 0.06);
+
+	-webkit-backdrop-filter: blur(7px);
+	backdrop-filter: blur(7px);
+
+	transform: translate3d(0, -50%, 0);
+	will-change: transform, opacity;
+
+	pointer-events: none;
+}
+
+/* La segunda comienza oculta y desplazada hacia la derecha */
+
+.denmark-scroll__card--second {
+	opacity: 0;
+	transform: translate3d(120px, -50%, 0);
+}
+
+.denmark-scroll__eyebrow {
+	margin: 0 0 12px;
+
+	font-family: Georgia, serif;
+	font-size: 0.73rem;
+	font-weight: 700;
+	letter-spacing: 0.17em;
+	line-height: 1.4;
+
+	color: #8a1f1f;
+}
+
+.denmark-scroll__title {
+	margin: 0 0 16px;
+
+	font-family: "Cormorant Garamond", Georgia, serif;
+	font-size: clamp(2rem, 3vw, 3.4rem);
+	font-weight: 500;
+	line-height: 1;
+
+	color: #27231f;
+	text-wrap: balance;
+}
+
+.denmark-scroll__paragraph {
+	margin: 0;
+
+	font-family: Georgia, serif;
+	font-size: clamp(1rem, 1.18vw, 1.18rem);
+	line-height: 1.7;
+
+	color: #403a35;
+}
+
+.denmark-scroll__reference {
+	margin: 22px 0 0;
+	padding-top: 14px;
+
+	border-top: 1px solid rgba(67, 58, 50, 0.25);
+
+	font-family: Georgia, serif;
+	font-size: 0.84rem;
+	font-style: italic;
+	line-height: 1.55;
+
+	color: #6c645d;
+}
+
+/* ==========================================================
+   FUENTES E INDICACIÓN
+   ========================================================== */
+
+.denmark-scroll__sources {
+	position: absolute;
+	z-index: 6;
+	left: 22px;
+	bottom: 18px;
+
+	max-width: min(600px, calc(100vw - 44px));
+	margin: 0;
+	padding: 7px 10px;
+
+	background: rgba(246, 242, 235, 0.78);
+
+	font-family: Georgia, serif;
+	font-size: 0.72rem;
+	line-height: 1.4;
+
+	color: #5e5751;
+	pointer-events: none;
+}
+
+.denmark-scroll__instruction {
+	position: absolute;
+	z-index: 6;
+	right: 28px;
+	bottom: 22px;
+
+	display: flex;
+	align-items: center;
+	gap: 8px;
+
+	font-family: Georgia, serif;
+	font-size: 0.72rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+
+	color: #57504a;
+	pointer-events: none;
+}
+
+/* ==========================================================
+   TABLET Y CELULAR
+   ========================================================== */
+
+@media (max-width: 800px) {
+	.denmark-scroll {
+		height: 300vh;
+	}
+
+	.denmark-scroll__card {
+		top: auto;
+		right: 18px;
+		bottom: 68px;
+		left: 18px;
+
+		width: auto;
+		max-height: 47vh;
+		padding: 22px;
+
+		overflow-y: auto;
+		transform: translate3d(0, 0, 0);
+	}
+
+	.denmark-scroll__card--second {
+		transform: translate3d(80px, 0, 0);
+	}
+
+	.denmark-scroll__title {
+		font-size: clamp(2.15rem, 10vw, 3.2rem);
+	}
+
+	.denmark-scroll__paragraph {
+		font-size: 0.95rem;
+		line-height: 1.55;
+	}
+
+	.denmark-scroll__reference {
+		margin-top: 15px;
+		padding-top: 11px;
+	}
+
+	.denmark-scroll__sources {
+		right: 18px;
+		bottom: 12px;
+		left: 18px;
+
+		max-width: none;
+		padding: 4px 7px;
+
+		font-size: 0.62rem;
+	}
+
+	.denmark-scroll__instruction {
+		display: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.denmark-scroll__card,
+	.denmark-scroll__map,
+	.denmark-scroll__instruction {
+		transition: none;
+	}
+}

@@ -381,7 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			showCopy(null);
 			return;
 		}
-		
+
 		if (item.classList.contains("waffle-copy")) {
 			const slideNumber = Number(item.dataset.slide);
 
@@ -462,7 +462,216 @@ document.addEventListener("DOMContentLoaded", () => {
 	updateWaffleScrolly();
 });
 
+// Capitulo 7: La magnitud humana
+/* ==========================================================
+   DINAMARCA — SCROLL CON PAUSA PARA VER DESAPARECER LOS PUNTOS
+   ========================================================== */
+
+function initDenmarkScroll() {
+	const section = document.querySelector("#denmark-scroll");
+
+	if (!section) {
+		console.warn("No se encontró #denmark-scroll");
+		return;
+	}
+
+	const visibleMap = section.querySelector(
+		".denmark-scroll__map--visible"
+	);
+
+	const emptyMap = section.querySelector(
+		".denmark-scroll__map--empty"
+	);
+
+	const firstCard = section.querySelector(
+		".denmark-scroll__card--first"
+	);
+
+	const secondCard = section.querySelector(
+		".denmark-scroll__card--second"
+	);
+
+	const instruction = section.querySelector(
+		".denmark-scroll__instruction"
+	);
+
+	if (!visibleMap || !emptyMap || !firstCard || !secondCard) {
+		console.warn("Faltan elementos del gráfico de Dinamarca");
+		return;
+	}
+
+	let ticking = false;
+
+	function clamp(value, minimum, maximum) {
+		return Math.min(Math.max(value, minimum), maximum);
+	}
+
+	function smoothstep(start, end, value) {
+		if (start === end) {
+			return value < start ? 0 : 1;
+		}
+
+		const normalized = clamp(
+			(value - start) / (end - start),
+			0,
+			1
+		);
+
+		return normalized * normalized * (3 - 2 * normalized);
+	}
+
+	function updateDenmarkScroll() {
+		const rectangle = section.getBoundingClientRect();
+
+		const scrollDistance =
+			section.offsetHeight - window.innerHeight;
+
+		if (scrollDistance <= 0) {
+			ticking = false;
+			return;
+		}
+
+		const progress = clamp(
+			-rectangle.top / scrollDistance,
+			0,
+			1
+		);
+
+		const isMobile = window.innerWidth <= 800;
+
+		/* ------------------------------------------
+		   1. PRIMERA TARJETA
+		   Visible al principio y luego sale.
+		   ------------------------------------------ */
+
+		const firstCardExit = smoothstep(
+			0.16,
+			0.30,
+			progress
+		);
+
+		const firstCardX = -120 * firstCardExit;
+
+		firstCard.style.opacity =
+			String(1 - firstCardExit);
+
+		firstCard.style.visibility =
+			firstCardExit >= 0.99 ? "hidden" : "visible";
+
+		firstCard.style.transform = isMobile
+			? `translate3d(${firstCardX}px, 0, 0)`
+			: `translate3d(${firstCardX}px, -50%, 0)`;
+
+
+		/* ------------------------------------------
+		   2. DESAPARICIÓN DE LOS PUNTOS
+		   Ocurre cuando no hay tarjetas encima.
+		   ------------------------------------------ */
+
+		const mapFade = smoothstep(
+			0.34,
+			0.60,
+			progress
+		);
+
+		visibleMap.style.opacity =
+			String(1 - mapFade);
+
+		emptyMap.style.opacity =
+			String(mapFade);
+
+		visibleMap.style.pointerEvents =
+			mapFade < 0.90 ? "auto" : "none";
+
+		emptyMap.style.pointerEvents = "none";
+
+
+		/* ------------------------------------------
+		   3. SEGUNDA TARJETA
+		   Aparece cuando los puntos ya desaparecieron.
+		   ------------------------------------------ */
+
+		const secondCardEntry = smoothstep(
+			0.66,
+			0.80,
+			progress
+		);
+
+		const secondCardX =
+			120 * (1 - secondCardEntry);
+
+		secondCard.style.opacity =
+			String(secondCardEntry);
+
+		secondCard.style.visibility =
+			secondCardEntry <= 0.01 ? "hidden" : "visible";
+
+		secondCard.style.transform = isMobile
+			? `translate3d(${secondCardX}px, 0, 0)`
+			: `translate3d(${secondCardX}px, -50%, 0)`;
+
+
+		/* ------------------------------------------
+		   INDICACIÓN DE SCROLL
+		   ------------------------------------------ */
+
+		if (instruction) {
+			const instructionOpacity = clamp(
+				1 - progress * 8,
+				0,
+				1
+			);
+
+			instruction.style.opacity =
+				String(instructionOpacity);
+		}
+
+		ticking = false;
+	}
+
+	function requestUpdate() {
+		if (ticking) {
+			return;
+		}
+
+		ticking = true;
+
+		window.requestAnimationFrame(
+			updateDenmarkScroll
+		);
+	}
+
+	window.addEventListener(
+		"scroll",
+		requestUpdate,
+		{ passive: true }
+	);
+
+	window.addEventListener(
+		"resize",
+		requestUpdate
+	);
+
+	updateDenmarkScroll();
+}
+
+/*
+	Funciona tanto si main.js tiene defer
+	como si se carga al final del body.
+*/
+
+if (document.readyState === "loading") {
+	document.addEventListener(
+		"DOMContentLoaded",
+		initDenmarkScroll
+	);
+} else {
+	initDenmarkScroll();
+}
+
+
 // ─── Barra de progreso de capítulos ──────────────────────────────────────
+
 (function () {
 	const nav = document.querySelector('.chapter-progress');
 	if (!nav) return;
