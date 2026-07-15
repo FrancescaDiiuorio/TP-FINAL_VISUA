@@ -41,6 +41,29 @@
   }
 
   const numberFormatter = new Intl.NumberFormat("es-AR");
+  const animateNumber = (element, from, to, duration = 700) => {
+  const startTime = performance.now();
+
+  const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+  const update = currentTime => {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easedProgress = easeOutCubic(progress);
+
+    const currentValue = Math.round(
+      from + (to - from) * easedProgress
+    );
+
+    element.textContent = numberFormatter.format(currentValue);
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  };
+
+  requestAnimationFrame(update);
+};
 
   let currentMode = "figure";
   let currentIndex = 0;
@@ -66,7 +89,17 @@
         ? String(item.inicio)
         : `${item.inicio}–${item.fin}`;
 
-    numberEl.textContent = numberFormatter.format(item.cantidad);
+   const previousValue = Number(
+      numberEl.textContent.replace(/\./g, "").replace(/,/g, "")
+    ) || 0;
+
+    animateNumber(
+      numberEl,
+      previousValue,
+      item.cantidad,
+      750
+    );
+
     labelEl.textContent = item.label;
     descriptionEl.textContent = item.descripcion;
 
@@ -82,6 +115,53 @@
     );
   };
 
+const animateTextChange = (elements, updateContent) => {
+  elements.forEach(element => {
+    element.animate(
+      [
+        {
+          opacity: 1,
+          transform: "translateY(0)"
+        },
+        {
+          opacity: 0,
+          transform: "translateY(8px)"
+        }
+      ],
+      {
+        duration: 180,
+        easing: "ease-in",
+        fill: "forwards"
+      }
+    );
+  });
+
+  setTimeout(() => {
+    updateContent();
+
+    elements.forEach(element => {
+      element.animate(
+        [
+          {
+            opacity: 0,
+            transform: "translateY(8px)"
+          },
+          {
+            opacity: 1,
+            transform: "translateY(0)"
+          }
+        ],
+        {
+          duration: 320,
+          easing: "ease-out",
+          fill: "forwards"
+        }
+      );
+    });
+  }, 180);
+};
+
+
   const showTimeline = (index) => {
     const item = data.hitos[index];
     if (!item) return;
@@ -92,11 +172,22 @@
     figure.style.display = "none";
     timeline.classList.add("is-visible");
 
-    eventYearEl.textContent = item.año;
-    eventTitleEl.textContent = item.titulo;
-    eventDescriptionEl.textContent = item.descripcion;
-    eventImpactEl.textContent = item.impacto;
+      animateTextChange(
+    [
+      eventYearEl,
+      eventTitleEl,
+      eventDescriptionEl,
+      eventImpactEl
+    ],
+    () => {
+      eventYearEl.textContent = item.año;
+      eventTitleEl.textContent = item.titulo;
+      eventDescriptionEl.textContent = item.descripcion;
+      eventImpactEl.textContent = item.impacto;
+    }
+  );
 
+updateTimeline(index);
     updateTimeline(index);
   };
 
@@ -182,16 +273,20 @@
     if (!activeItem) return;
 
     progressLine
-      .transition()
-      .duration(500)
-      .attr("x2", xScale(activeItem.año));
+    .interrupt()
+    .transition()
+    .duration(700)
+    .ease(d3.easeCubicOut)
+    .attr("x2", xScale(activeItem.año));
 
     dots
-      .classed("is-active", (_, index) => index === activeIndex)
-      .classed("is-past", (_, index) => index < activeIndex)
-      .transition()
-      .duration(300)
-      .attr("r", (_, index) => (index === activeIndex ? 12 : 8));
+    .classed("is-active", (_, index) => index === activeIndex)
+    .classed("is-past", (_, index) => index < activeIndex)
+    .interrupt()
+    .transition()
+    .duration(450)
+    .ease(d3.easeBackOut.overshoot(1.4))
+    .attr("r", (_, index) => (index === activeIndex ? 13 : 8));
 
     if (yearLabels) {
       yearLabels
